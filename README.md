@@ -2,7 +2,7 @@
 
 A Google Finance-style stock investment web app built with Next.js, TypeScript, and Tailwind CSS. Track live (delayed) stock prices, read financial news, manage a personal watchlist, and monitor your portfolio — all in one place.
 
-**Live app:** https://marketcap-woad.vercel.app
+**Live app:** https://marketcap-woad.vercel.app &nbsp;·&nbsp; **[Architecture docs](ARCHITECTURE.md)**
 
 ---
 
