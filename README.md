@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MarketCap
+
+A Google Finance-style stock investment web app built with Next.js, TypeScript, and Tailwind CSS. Track live (delayed) stock prices, read financial news, manage a personal watchlist, and monitor your portfolio — all in one place.
+
+**Live app:** https://marketcap-woad.vercel.app
+
+---
+
+## Screenshots
+
+### Homepage — Market Overview
+![Homepage](screenshots/01-homepage.png)
+
+The homepage displays real-time market indices (S&P 500, Dow Jones, Nasdaq, Russell 2000, VIX), a Market Movers table with tabs for Most Active, Gainers, and Losers, a Trending Stocks strip, and a live financial news feed powered by Finnhub.
+
+---
+
+### Dark Mode
+![Dark Mode](screenshots/02-homepage-dark.png)
+
+Toggle between light and dark themes using the moon/sun icon in the navbar. The preference is saved to `localStorage` and persists across sessions.
+
+---
+
+### Stock Detail Page
+![Stock Detail](screenshots/03-stock-detail.png)
+
+Clicking any stock opens a detail page with an interactive price chart (1D / 5D / 1M / 6M / 1Y / 5Y time ranges), key statistics (market cap, P/E ratio, 52-week range, volume, EPS, dividend yield), a company description with sector/industry/employee info, and a stock-specific news sidebar.
+
+---
+
+### Index Detail Page
+![Index Detail](screenshots/04-stock-index.png)
+
+Market indices like the Dow Jones Industrial Average have their own detail pages with full price history charts and general market news.
+
+---
+
+### Sign In
+![Login](screenshots/05-login.png)
+
+Users can sign in with Google OAuth or with an email and password. New accounts can be created via the Sign Up flow. Authentication is powered by NextAuth v5 with a Supabase PostgreSQL backend.
+
+---
+
+### Watchlist
+![Watchlist](screenshots/06-watchlist.png)
+
+Authenticated users can save stocks to a personal watchlist from any stock card or detail page. The watchlist page shows live prices and daily change for all saved tickers.
+
+---
+
+### Portfolio Tracker
+![Portfolio](screenshots/07-portfolio.png)
+
+Track your holdings by entering a ticker, number of shares, and purchase price. The portfolio page calculates current value and unrealised P&L per position.
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 16 (App Router) + TypeScript |
+| Styling | Tailwind CSS v4 |
+| Auth | NextAuth v5 (Google OAuth + email/password) |
+| Database | Supabase PostgreSQL + Prisma ORM |
+| Stock Data | yahoo-finance2 (delayed quotes, history, search) |
+| News | Finnhub API (free tier) |
+| Charts | Recharts |
+| Deployment | Vercel |
+
+---
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repo and install dependencies:
+   ```bash
+   git clone https://github.com/thenugespeaks/marketcap.git
+   cd marketcap
+   npm install
+   ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+2. Copy `.env.example` to `.env` and fill in your credentials:
+   ```bash
+   cp .env.example .env
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Run the Prisma migration against your database:
+   ```bash
+   npx prisma migrate dev --name init
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+4. Start the dev server:
+   ```bash
+   npm run dev -- --webpack
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open [http://localhost:3000](http://localhost:3000).
